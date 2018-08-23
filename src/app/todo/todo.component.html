@@ -1,6 +1,6 @@
 <div>
   <label>
-    <input id="todo-is-checked" type="checkbox" [checked]="isTodoComplete"/>
-    <span id="todo-text">{{text}}</span>
+    <input id="todo-is-checked" type="checkbox" [checked]="isTodoComplete" (change)="updateTodoStatus($event)"/>
+    <span id="todo-text" [class.todo-done]="isTodoComplete">{{text}}</span>
   </label>
 </div>

@@ -43,4 +43,21 @@ describe('TodoComponent', () => {
     expect(fixture.debugElement.query(By.css('#todo-text')).nativeElement.textContent).toEqual('My test text 1');
     expect(fixture.debugElement.query(By.css('#todo-is-checked')).nativeElement.checked).toBeFalsy();
   });
+
+  it('should mark todo as complete if checked', async() => {
+    component.text = 'My test text';
+    component.isTodoComplete = false;
+
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.query(By.css('#todo-text')).nativeElement.classList.contains('todo-done')).toBeFalsy();
+
+    component.isTodoComplete = true;
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(fixture.debugElement.query(By.css('#todo-text')).nativeElement.classList.contains('todo-done')).toBeTruthy();
+  });
 });

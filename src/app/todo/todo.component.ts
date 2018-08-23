@@ -15,4 +15,7 @@ export class TodoComponent implements OnInit {
   ngOnInit() {
   }
 
+  updateTodoStatus(event: HTMLSelectElement) {
+    this.isTodoComplete = event.target.checked;
+  }
 }
