@@ -6,5 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'todo-app';
+  public todos = [
+    {
+      isComplete: false,
+      text: 'File income-tax returns'
+    },
+    {
+      isComplete: true,
+      text: 'Get clothes from laundry'
+    }
+  ];
+
+  addTodo(todoText: any) {
+    this.todos.push({
+      isComplete: false,
+      text: todoText
+    });
+  }
 }

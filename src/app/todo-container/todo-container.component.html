@@ -1,0 +1,8 @@
+<div>
+  <h2>List of all Todos!</h2>
+  <ul>
+    <li *ngFor="let todo of todos">
+      <app-todo [text]="todo.text" [isTodoComplete]="todo.isComplete"></app-todo>
+    </li>
+  </ul>
+</div>
