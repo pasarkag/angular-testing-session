@@ -35,4 +35,19 @@ describe('TodoAddComponent', () => {
 
     expect(component.todoAddHandler.emit).toHaveBeenCalledWith('New todo');
   });
+
+  it('should clear input after adding todo', async() => {
+    await fixture.whenStable();
+    expect(fixture.debugElement.query(By.css('#todo-input')).nativeElement.value).toEqual('');
+
+    const input: HTMLInputElement = fixture.debugElement.query(By.css('#todo-input')).nativeElement;
+    input.value = 'New todo';
+    input.dispatchEvent(new Event('input'));
+    fixture.debugElement.query(By.css('#todo-add')).nativeElement.click();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(fixture.debugElement.query(By.css('#todo-input')).nativeElement.value).toEqual('');
+  });
 });

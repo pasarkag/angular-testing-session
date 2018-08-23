@@ -16,5 +16,6 @@ export class TodoAddComponent implements OnInit {
 
   addTodo() {
     this.todoAddHandler.emit(this.todoText);
+    this.todoText = '';
   }
 }
