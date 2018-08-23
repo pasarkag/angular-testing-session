@@ -27,17 +27,16 @@ describe('AppComponent', () => {
   it('should add a todo', async() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    fixture.whenStable().then(() => {
-      expect(fixture.debugElement.queryAll(By.css('app-todo')).length).toEqual(2);
+    await fixture.whenStable();
+    expect(fixture.debugElement.queryAll(By.css('app-todo')).length).toEqual(2);
 
-      const input: HTMLInputElement = fixture.debugElement.query(By.css('#todo-input')).nativeElement;
-      input.value = 'Test todo';
-      input.dispatchEvent(new Event('input'));
-      fixture.debugElement.query(By.css('#todo-add')).nativeElement.click();
+    const input: HTMLInputElement = fixture.debugElement.query(By.css('#todo-input')).nativeElement;
+    input.value = 'Test todo';
+    input.dispatchEvent(new Event('input'));
+    fixture.debugElement.query(By.css('#todo-add')).nativeElement.click();
 
-      fixture.detectChanges();
+    fixture.detectChanges();
 
-      expect(fixture.debugElement.queryAll(By.css('app-todo')).length).toEqual(3);
-    });
+    expect(fixture.debugElement.queryAll(By.css('app-todo')).length).toEqual(3);
   });
 });

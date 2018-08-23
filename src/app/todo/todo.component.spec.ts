@@ -24,25 +24,23 @@ describe('TodoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render text details when text is complete', () => {
+  it('should render text details when text is complete', async() => {
     component.text = 'My test text';
     component.isTodoComplete = true;
 
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('#todo-text')).nativeElement.textContent).toEqual('My test text');
-      expect(fixture.debugElement.query(By.css('#todo-is-checked')).nativeElement.checked).toBeTruthy();
-    });
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('#todo-text')).nativeElement.textContent).toEqual('My test text');
+    expect(fixture.debugElement.query(By.css('#todo-is-checked')).nativeElement.checked).toBeTruthy();
   });
 
-  it('should render text details when text is NOT complete', () => {
+  it('should render text details when text is NOT complete', async() => {
     component.text = 'My test text 1';
     component.isTodoComplete = false;
 
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('#todo-text')).nativeElement.textContent).toEqual('My test text 1');
-      expect(fixture.debugElement.query(By.css('#todo-is-checked')).nativeElement.checked).toBeFalsy();
-    });
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('#todo-text')).nativeElement.textContent).toEqual('My test text 1');
+    expect(fixture.debugElement.query(By.css('#todo-is-checked')).nativeElement.checked).toBeFalsy();
   });
 });

@@ -22,18 +22,17 @@ describe('TodoAddComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should emit event on add todo', () => {
-    fixture.whenStable().then(() => {
-      spyOn(component.todoAddHandler, 'emit');
+  it('should emit event on add todo', async() => {
+    await fixture.whenStable();
+    spyOn(component.todoAddHandler, 'emit');
 
-      const input: HTMLInputElement = fixture.debugElement.query(By.css('#todo-input')).nativeElement;
-      input.value = 'New todo';
-      input.dispatchEvent(new Event('input'));
-      fixture.debugElement.query(By.css('#todo-add')).nativeElement.click();
+    const input: HTMLInputElement = fixture.debugElement.query(By.css('#todo-input')).nativeElement;
+    input.value = 'New todo';
+    input.dispatchEvent(new Event('input'));
+    fixture.debugElement.query(By.css('#todo-add')).nativeElement.click();
 
-      fixture.detectChanges();
+    fixture.detectChanges();
 
-      expect(component.todoAddHandler.emit).toHaveBeenCalledWith('New todo');
-    });
+    expect(component.todoAddHandler.emit).toHaveBeenCalledWith('New todo');
   });
 });

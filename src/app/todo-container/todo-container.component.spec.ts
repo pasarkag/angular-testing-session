@@ -22,7 +22,7 @@ describe('TodoContainerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should render all todo details', () => {
+  it('should render all todo details', async() => {
     component.todos = [{
       text: 'My Test todo',
       isComplete: true
@@ -32,10 +32,9 @@ describe('TodoContainerComponent', () => {
       isComplete: true
     }];
 
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      expect(fixture.debugElement.query(By.css('h2')).nativeElement.textContent).toEqual('List of all Todos!');
-      expect(fixture.debugElement.queryAll(By.css('app-todo')).length).toEqual(2);
-    });
+    await fixture.whenStable();
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('h2')).nativeElement.textContent).toEqual('List of all Todos!');
+    expect(fixture.debugElement.queryAll(By.css('app-todo')).length).toEqual(2);
   });
 });
