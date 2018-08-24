@@ -44,6 +44,17 @@ describe('TodoComponent', () => {
     expect(fixture.debugElement.query(By.css('#todo-is-checked')).nativeElement.checked).toBeFalsy();
   });
 
+  it('should set isComplete to true when checked', async() => {
+    await fixture.whenStable();
+    expect(component.isTodoComplete).toBeFalsy();
+
+    fixture.debugElement.query(By.css('#todo-is-checked')).nativeElement.click();
+    fixture.detectChanges();
+
+    await fixture.whenStable();
+    expect(component.isTodoComplete).toBeTruthy();
+  });
+
   it('should mark todo as complete if checked', async() => {
     component.text = 'My test text';
     component.isTodoComplete = false;
